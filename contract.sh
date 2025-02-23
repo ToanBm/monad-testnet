@@ -15,7 +15,7 @@ npm install dotenv
 
 # Step 2: Automatically choose "Create an empty hardhat.config.js"
 echo "Choose >> Create a TypeScript project (with Viem)"
-npx hardhat init
+printf "\n\n2\n" | npx hardhat init
 
 # Step 3: Update hardhat.config.js with the proper configuration
 echo "Creating new hardhat.config file..."
