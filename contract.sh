@@ -84,10 +84,18 @@ rm ignition/modules/Lock.ts
 
 cat <<'EOF' > ignition/modules/GMonad.ts
 import { buildModule } from "@nomicfoundation/hardhat-ignition/modules";
+const fs = require("fs");
 
 const GMonadModule = buildModule("GMonadModule", (m) => {
     const gmonad = m.contract("GMonad");
-
+    
+    // Lưu địa chỉ contract vào file
+    m.afterDeploy(async ({ deployments }) => {
+        const contractAddress = deployments.GMonad.address;
+        fs.writeFileSync("./latest_contract_address.txt", contractAddress);
+        console.log(`Contract address saved to latest_contract_address.txt: ${contractAddress}`);
+    });
+    
     return { gmonad };
 });
 
@@ -97,5 +105,38 @@ EOF
 # Step 8: Deploying the smart contract
 echo "Deploying the smart contract..."
 npx hardhat ignition deploy ./ignition/modules/GMonad.ts --network monadTestnet
+
+# Đọc địa chỉ contract từ file tạm
+  if [ -f "./latest_contract_address.txt" ]; then
+    CONTRACT_ADDRESS=$(cat ./latest_contract_address.txt)
+    print_command "Contract deployed at address: $CONTRACT_ADDRESS"
+  else
+    echo "Error: Could not find the contract address file."
+    exit 1
+  fi
+  
+  # Thời gian chờ ngẫu nhiên từ 2 đến 5 giây
+  RANDOM_DELAY=$(shuf -i 2-5 -n 1)
+  echo "Waiting for $RANDOM_DELAY seconds before verifying contract..."
+  sleep $RANDOM_DELAY
+  
+  # Verify contract
+  print_command "Verifying contract at address $CONTRACT_ADDRESS..."
+  npx hardhat verify $CONTRACT_ADDRESS --network monadTestnet
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
