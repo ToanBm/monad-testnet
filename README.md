@@ -1,7 +1,9 @@
 ## Deploy a smart contract on Monad using Hardhat
 1. Create a sample Hardhat project
 ```
-mkdir my-hardhat-project && cd my-hardhat-project
+npm init -y
+npm install --save-dev hardhat @nomiclabs/hardhat-ethers ethers @openzeppelin/contracts
+npm install dotenv
 ```
 ```
 npx hardhat init
