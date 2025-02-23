@@ -17,25 +17,28 @@ Select your preferences when prompted by the CLI or use the recommended preferen
 ```
 3. Update your hardhat.config.ts file to include the monadTestnet configuration
 ```
-import type { HardhatUserConfig } from "hardhat/config";
+import { HardhatUserConfig } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox-viem";
-import { vars } from "hardhat/config";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 const config: HardhatUserConfig = {
-    solidity: "0.8.27",
-    ...
-    networks: {
-        ...
-        monadTestnet: {
-            url: vars.get("MONAD_RPC_URL"),
-            accounts: [vars.get("PRIVATE_KEY")],
-            chainId: Number(vars.get("MONAD_CHAIN_ID")),
-        },
-        ...
+  solidity: "0.8.27",
+  networks: {
+    monadTestnet: {
+      url: "https://testnet-rpc.monad.xyz",
+      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
+      chainId: 10143,
     },
+  },
 };
 
 export default config;
+```
+Creat .env
+```
+PRIVATE_KEY=your_private_key_here
 ```
 4. Write a smart contract
 ```
