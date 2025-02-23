@@ -16,7 +16,7 @@ Select your preferences when prompted by the CLI or use the recommended preferen
 ✔ Do you want to install this sample project's dependencies with npm (hardhat @nomicfoundation/hardhat-toolbox-viem)? (Y/n) · y
 ```
 2. Setting up configuration variables
-```
+
 3. Update your hardhat.config.ts file to include the monadTestnet configuration
 ```
 import { HardhatUserConfig } from "hardhat/config";
