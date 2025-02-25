@@ -18,9 +18,9 @@ cd scaffold-eth-monad && yarn install
 echo "Create .env file..."
 cd packages/hardhat
 
-read -p "Enter your EVM wallet private key (without 0x): " PRIVATE_KEY
+read -p "Enter your EVM wallet private key (without 0x): " DEPLOYER_PRIVATE_KEY
 cat <<EOF > .env
-DEPLOYER_PRIVATE_KEY=$DEPLOYER_PRIVATE_KEY=
+DEPLOYER_PRIVATE_KEY=$DEPLOYER_PRIVATE_KEY
 EOF
 
 # Step 3: Deploying the smart contract
