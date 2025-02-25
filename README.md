@@ -1,5 +1,4 @@
 ## Deploy a smart contract on Monad using Hardhat
-## Auto Setup
 ### 1. Clone the repository
 ```Bash
 git clone https://github.com/ToanBm/monad-testnet.git && cd monad-testnet
@@ -16,5 +15,17 @@ npx hardhat verify <> --network monadTestnet
 
 ## Done!
 
+## Build a basic dApp with Scaffold-Eth-Monad
+### 1. Clone the repository
+```Bash
+git clone https://github.com/ToanBm/monad-testnet.git && cd monad-testnet
+```
+### 2. Run the deploy script
+```bash
+chmod +x dapp.sh && ./dapp.sh
+```
 
+- Check your contract on Explorer! [Here](https://monad-testnet.socialscan.io/)
+
+## Done!
 
