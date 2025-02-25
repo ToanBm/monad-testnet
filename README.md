@@ -10,7 +10,7 @@ chmod +x contract.sh && ./contract.sh
 ```
 ### 3. Verify contract
 ```bash
-npx hardhat verify <your_contract_address> --network monadTestnet
+npx hardhat verify <> --network monadTestnet
 ```
 - Check your contract on Explorer! [Here](https://monad-testnet.socialscan.io/)
 
