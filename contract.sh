@@ -102,12 +102,13 @@ yes | npx hardhat ignition deploy ./ignition/modules/GMonad.ts --network monadTe
 
 sleep 3s
 
-# Nhập số lượng contract cần deploy
+# 
+echo "Do you want to deploy multi contract?"
 read -p "Nhập số lượng contract cần deploy: " COUNT
 
-# Kiểm tra nếu COUNT không phải là số
+# Validate input (must be a number)
 if ! [[ "$COUNT" =~ ^[0-9]+$ ]]; then
-  echo "Vui lòng nhập một số hợp lệ!"
+  echo "Please enter a valid number!"
   exit 1
 fi
 
@@ -115,12 +116,12 @@ for ((i=1; i<=COUNT; i++))
 do
   echo "🚀 Deploying contract $i..."
 
-  # Deploy contract và lấy địa chỉ
+  # Deploy the contract and extract the contract address
   CONTRACT_ADDRESS=$(yes | npx hardhat ignition deploy ./ignition/modules/GMonad.ts --network monadTestnet --reset | grep -oE '0x[a-fA-F0-9]{40}')
 
-  # Kiểm tra nếu lấy được địa chỉ
+  # Check if an address was retrieved
   if [[ -z "$CONTRACT_ADDRESS" ]]; then
-    echo "❌ Lỗi: Không thể lấy địa chỉ contract!"
+    echo "❌ Unable to retrieve contract address!"
     exit 1
   fi
 
@@ -133,13 +134,13 @@ do
   echo "✅ Contract $i verified!"
   echo "-----------------------------------"
 
-  # Tạo thời gian chờ ngẫu nhiên từ 5-9 giây
+  # Generate a random wait time between 5-9 seconds
   RANDOM_WAIT=$((RANDOM % 5 + 5))
-  echo "⏳ Chờ $RANDOM_WAIT giây trước khi deploy tiếp..."
+  echo "⏳ Waiting for $RANDOM_WAIT seconds before deploying the next contract..."
   sleep $RANDOM_WAIT
 done
 
-echo "🎉 Hoàn thành deploy và verify $COUNT contract!"
+echo "🎉 Successfully deployed and verified $COUNT contracts!"
 
 
 
