@@ -100,6 +100,49 @@ EOF
 echo "Deploying the smart contract..."
 yes | npx hardhat ignition deploy ./ignition/modules/GMonad.ts --network monadTestnet
 
+sleep 3s
+
+# Nhập số lượng contract cần deploy
+read -p "Nhập số lượng contract cần deploy: " COUNT
+
+# Kiểm tra nếu COUNT không phải là số
+if ! [[ "$COUNT" =~ ^[0-9]+$ ]]; then
+  echo "Vui lòng nhập một số hợp lệ!"
+  exit 1
+fi
+
+for ((i=1; i<=COUNT; i++))
+do
+  echo "🚀 Deploying contract $i..."
+
+  # Deploy contract và lấy địa chỉ
+  CONTRACT_ADDRESS=$(yes | npx hardhat ignition deploy ./ignition/modules/GMonad.ts --network monadTestnet --reset | grep -oE '0x[a-fA-F0-9]{40}')
+
+  # Kiểm tra nếu lấy được địa chỉ
+  if [[ -z "$CONTRACT_ADDRESS" ]]; then
+    echo "❌ Lỗi: Không thể lấy địa chỉ contract!"
+    exit 1
+  fi
+
+  echo "✅ Contract $i deployed at: $CONTRACT_ADDRESS"
+
+  # Verify contract
+  echo "🔍 Verifying contract $i..."
+  npx hardhat verify $CONTRACT_ADDRESS --network monadTestnet
+
+  echo "✅ Contract $i verified!"
+  echo "-----------------------------------"
+
+  # Tạo thời gian chờ ngẫu nhiên từ 5-9 giây
+  RANDOM_WAIT=$((RANDOM % 5 + 5))
+  echo "⏳ Chờ $RANDOM_WAIT giây trước khi deploy tiếp..."
+  sleep $RANDOM_WAIT
+done
+
+echo "🎉 Hoàn thành deploy và verify $COUNT contract!"
+
+
+
 
 
 
