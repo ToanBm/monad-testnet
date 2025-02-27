@@ -15,6 +15,8 @@ npm install dotenv
 
 # Step 2: Automatically choose "Create an empty hardhat.config.js"
 echo "Choose >> Create a TypeScript project (with Viem)"
+npm install --save-dev hardhat@2.22.19
+
 npx hardhat init
 
 # Step 3: Update hardhat.config.js with the proper configuration
@@ -96,7 +98,7 @@ EOF
 
 # Step 8: Deploying the smart contract
 echo "Deploying the smart contract..."
-npx hardhat ignition deploy ./ignition/modules/GMonad.ts --network monadTestnet
+yes | npx hardhat ignition deploy ./ignition/modules/GMonad.ts --network monadTestnet
 
 
 
