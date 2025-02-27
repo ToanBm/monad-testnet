@@ -104,7 +104,7 @@ sleep 3s
 
 # 
 echo "Do you want to deploy multi contract?"
-read -p "Nhập số lượng contract cần deploy: " COUNT
+read -p "Enter the number of contracts to deploy: " COUNT
 
 # Validate input (must be a number)
 if ! [[ "$COUNT" =~ ^[0-9]+$ ]]; then
