@@ -19,7 +19,8 @@ yes | npx hardhat ignition deploy ./ignition/modules/GMonad.ts --network monadTe
 #### Verify
 ```bash
 CONTRACT_ADDRESS=$(yes | npx hardhat ignition deploy ./ignition/modules/GMonad.ts --network monadTestnet --reset | grep -oE '0x[a-fA-F0-9]{40}')
-
+```
+```bash
 npx hardhat verify $CONTRACT_ADDRESS --network monadTestnet
 ```
 
