@@ -98,7 +98,7 @@ EOF
 
 # Step 8: Deploying the smart contract
 echo "Deploying the smart contract..."
-# yes | npx hardhat ignition deploy ./ignition/modules/GMonad.ts --network monadTestnet
+# yes | npx hardhat ignition deploy ./ignition/modules/GMonad.ts --network monadTestnet --reset
 
 sleep 3s
 
@@ -117,7 +117,7 @@ do
   echo "🚀 Deploying contract $i..."
 
   # Deploy the contract and extract the contract address
-  CONTRACT_ADDRESS=$(yes | npx hardhat ignition deploy ./ignition/modules/GMonad.ts --network monadTestnet | grep -oE '0x[a-fA-F0-9]{40}')
+  CONTRACT_ADDRESS=$(yes | npx hardhat ignition deploy ./ignition/modules/GMonad.ts --network monadTestnet --reset | grep -oE '0x[a-fA-F0-9]{40}')
 
   # Check if an address was retrieved
   if [[ -z "$CONTRACT_ADDRESS" ]]; then
