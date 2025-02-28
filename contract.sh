@@ -98,7 +98,7 @@ EOF
 
 # Step 8: Deploying the smart contract
 echo "Deploying the smart contract..."
-yes | npx hardhat ignition deploy ./ignition/modules/GMonad.ts --network monadTestnet
+# yes | npx hardhat ignition deploy ./ignition/modules/GMonad.ts --network monadTestnet
 
 sleep 3s
 
@@ -117,7 +117,7 @@ do
   echo "🚀 Deploying contract $i..."
 
   # Deploy the contract and extract the contract address
-  CONTRACT_ADDRESS=$(yes | npx hardhat ignition deploy ./ignition/modules/GMonad.ts --network monadTestnet --reset | grep -oE '0x[a-fA-F0-9]{40}')
+  CONTRACT_ADDRESS=$(yes | npx hardhat ignition deploy ./ignition/modules/GMonad.ts --network monadTestnet | grep -oE '0x[a-fA-F0-9]{40}')
 
   # Check if an address was retrieved
   if [[ -z "$CONTRACT_ADDRESS" ]]; then
@@ -134,8 +134,8 @@ do
   echo "✅ Contract $i verified!"
   echo "-----------------------------------"
 
-  # Generate a random wait time between 5-9 seconds
-  RANDOM_WAIT=$((RANDOM % 5 + 5))
+  # Generate a random wait time between 9-15 seconds
+  RANDOM_WAIT=$((RANDOM % 7 + 9))
   echo "⏳ Waiting for $RANDOM_WAIT seconds before deploying the next contract..."
   sleep $RANDOM_WAIT
 done
