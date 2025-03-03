@@ -54,16 +54,25 @@ export default config;
 EOF
 
 # Step 4: Create MyToken.sol contract
-echo "Create ERC20 contract..."
+echo "Enter token symbol:"
+read TOKEN_SYMBOL
+
+echo "Enter total supply:"
+read TOTAL_SUPPLY
+
+echo "Creating ERC20 contract with symbol $TOKEN_SYMBOL and supply $TOTAL_SUPPLY..."
+
 rm contracts/Lock.sol
 
-cat <<'EOF' > contracts/GMonad.sol
+cat <<EOF > contracts/MyToken.sol
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.17;
 
-contract GMonad {
-    function sayGmonad() public pure returns (string memory) {
-        return "gmonad";
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+
+contract MyToken is ERC20 {
+    constructor() ERC20("MyToken", "$TOKEN_SYMBOL") {
+        _mint(msg.sender, $TOTAL_SUPPLY * 10 ** decimals());
     }
 }
 EOF
