@@ -12,6 +12,7 @@ echo "Install Hardhat..."
 npm init -y
 echo "Install dotenv..."
 npm install dotenv
+npm install @openzeppelin/contracts
 
 # Step 2: Automatically choose "Create an empty hardhat.config.js"
 echo "Choose >> Create a TypeScript project (with Viem)"
@@ -60,22 +61,23 @@ read TOKEN_SYMBOL
 echo "Enter total supply:"
 read TOTAL_SUPPLY
 
-echo "Creating ERC20 contract with symbol $TOKEN_SYMBOL and supply $TOTAL_SUPPLY..."
+echo "Creating GMonad contract with symbol $TOKEN_SYMBOL and supply $TOTAL_SUPPLY..."
 
 rm contracts/Lock.sol
 
-cat <<EOF > contracts/MyToken.sol
+cat <<EOF > contracts/GMonad.sol
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.17;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
-contract MyToken is ERC20 {
-    constructor() ERC20("MyToken", "$TOKEN_SYMBOL") {
+contract GMonad is ERC20 {
+    constructor() ERC20("GMonad", "$TOKEN_SYMBOL") {
         _mint(msg.sender, $TOTAL_SUPPLY * 10 ** decimals());
     }
 }
 EOF
+
 
 # Step 5: Compile contracts
 echo "Compile your contracts..."
