@@ -1,20 +1,12 @@
-## Deploy a smart contract on Monad using Hardhat
-### 1. Clone the repository
+## 1. Deploy a smart contract on Monad using Hardhat
+### Clone the repository & Run the deploy script
 ```Bash
-git clone https://github.com/ToanBm/monad-testnet.git && cd monad-testnet
-```
-### 2. Run the deploy script
-```bash
-chmod +x contract.sh && ./contract.sh
+git clone https://github.com/ToanBm/monad-testnet.git && cd monad-testnet && chmod +x contract.sh && ./contract.sh
 ```
 ## ......... Done! .................
 
-## Build a basic dApp with Scaffold-Eth-Monad
-### 1. Clone the repository
-```Bash
-git clone https://github.com/ToanBm/monad-testnet.git && cd monad-testnet
-```
-### 2. Run the deploy script
+## 2. Build a basic dApp with Scaffold-Eth-Monad
+### Run the deploy script
 ```bash
 chmod +x dapp.sh && ./dapp.sh
 ```
